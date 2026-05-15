@@ -24,7 +24,8 @@ const AuthModal = ({ isOpen, onClose, onAuthSuccess }) => {
 
         if (error) throw error;
 
-        const userName = data.user.user_metadata?.username || data.user.email.split('@')[0];
+        const rawName = data.user.user_metadata?.username || data.user.email.split('@')[0];
+        const userName = rawName === 'ahmirov70-eng' ? 'Abdulazimzor' : rawName;
         localStorage.setItem('username', userName);
         localStorage.setItem('userEmail', data.user.email);
         onAuthSuccess(userName);
