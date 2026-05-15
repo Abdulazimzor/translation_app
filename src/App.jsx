@@ -30,7 +30,8 @@ const MangaTranslationApp = () => {
     // Check active session
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
-        const userName = session.user.user_metadata.username || session.user.email.split('@')[0];
+        const rawName = session.user.user_metadata.username || session.user.email.split('@')[0];
+        const userName = rawName === 'ahmirov70-eng' ? 'Abdulazimzor' : rawName;
         setUser(userName);
         localStorage.setItem('username', userName);
         localStorage.setItem('userEmail', session.user.email);
@@ -41,7 +42,8 @@ const MangaTranslationApp = () => {
     // Listen for changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       if (session) {
-        const userName = session.user.user_metadata.username || session.user.email.split('@')[0];
+        const rawName = session.user.user_metadata.username || session.user.email.split('@')[0];
+        const userName = rawName === 'ahmirov70-eng' ? 'Abdulazimzor' : rawName;
         setUser(userName);
         fetchHistory();
       } else {
